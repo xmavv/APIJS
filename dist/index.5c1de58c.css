@@ -1,0 +1,2 @@
+:root{box-sizing:border-box;margin:0;padding:0}body{color:#fff;background-color:#000;gap:30%;font-family:sans-serif;display:flex}.station-list{list-style:none;display:inline-block}.station-list>*{cursor:pointer;padding:1rem;font-size:1.3rem}.station-list>:hover{color:#4682b4}.container{position:fixed;top:0;left:50%}.container span{color:#4682b4;font-weight:700}.chart-conatiner{width:100rem;height:20rem}
+/*# sourceMappingURL=index.5c1de58c.css.map */

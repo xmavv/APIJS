@@ -1,0 +1,44 @@
+:root {
+    margin: 0;padding: 0;box-sizing: border-box;
+}
+
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    gap: 30%;
+}
+
+.station-list {
+    list-style: none;
+    display: inline-block;
+}
+
+.station-list > * {
+    font-size: 1.3rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.station-list > *:hover {
+    color: steelblue;
+}
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+}
+
+.container span {
+    font-weight: bold;
+    color: steelblue;
+}
+
+.chart-conatiner {
+    display: flex;
+    width: 70rem;
+    height: 14rem;
+}
