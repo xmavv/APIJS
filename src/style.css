@@ -27,9 +27,18 @@ body {
 }
 
 .container {
+    width: 33rem;
     position: fixed;
     top: 0;
     left: 50%;
+}
+
+.container h1 span{
+    color: steelblue;
+}
+
+.container h2 span{
+    color: steelblue;
 }
 
 .container span {
@@ -38,7 +47,9 @@ body {
 }
 
 .chart-conatiner {
+    margin-top: 4rem;
     display: flex;
-    width: 70rem;
-    height: 14rem;
+    flex-direction: column;
+    width: 50rem;
+    height: 10rem;
 }

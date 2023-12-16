@@ -45,7 +45,7 @@ async function renderInfo() {
     const humi = document.getElementById('humi');
 
     const data = await getData();
-    const element = data.find(e => e.id_stacji === this.children[0].id)
+    const element = data.find(e => e.id_stacji === this.children[0].id);
     name.innerText = element.stacja;
     id.innerText = element.id_stacji;
     date.innerText = element.data_pomiaru;
@@ -58,4 +58,6 @@ async function renderInfo() {
 
     renderChart.renderChartTemp(tempValue);
     renderChart.renderChartHumi(humiValue);
+    // renderChart.getChartTime(element.stacja);
+    renderChart.renderChartTime(element.stacja, tempValue);
 }
