@@ -58,6 +58,5 @@ async function renderInfo() {
 
     renderChart.renderChartTemp(tempValue);
     renderChart.renderChartHumi(humiValue);
-    // renderChart.getChartTime(element.stacja);
     renderChart.renderChartTime(element.stacja, tempValue);
 }

@@ -48,8 +48,8 @@ let myChartHumi = new Chart(ctxHumi, {
 })
 
 
-const timeLabels = [];
-const timeDatas = [];
+let timeLabels = [];
+let timeDatas = [];
 
 //TIME
 const chartTime = new Chart(ctxTime, {
@@ -84,8 +84,8 @@ const chartTime = new Chart(ctxTime, {
       },
       y: {
         display: true,
-        suggestedMin: -1,
-        suggestedMax: 1
+        // suggestedMin: -1,
+        // suggestedMax: 1
       }
     }
   },
@@ -93,58 +93,50 @@ const chartTime = new Chart(ctxTime, {
 
 
 //FUNCTIONS
-const data = JSON.parse(localStorage.getItem('data')) || [];
-
-function getChartTime (name) {
-  const element = data.find(e => e.name === name);
-}
-
 function renderChartTime (givenName, tempValue) {
+  timeLabels.splice(0, timeLabels.length);
+  timeDatas.splice(0, timeDatas.length); // didnt work with let so i have to delete all from arrays
+
+  const data = JSON.parse(localStorage.getItem(givenName)) || [];
   const curHour = new Date().getHours();
-  
-  const details = {
-    hour: curHour,
-    value: tempValue
-  }
+  const curSecs = Math.round(Date.now() / 1000) + 8*24*60*60;
+  const time7Days = 7*24*60*60; //7 days in seconds
+  const time24Hours = 24*60*60; //24 hours in seconds
 
-  //CURRENT ELEMENT
-  const element = data.find(e => e.name === givenName);
-  
-  //IF ELEMENT ALREADY EXISTS
-  if(element){
-    element.info.push(details);
-    localStorage.setItem('data', JSON.stringify(data));
-
-    //SHALLOW COPY JUST FOR LENGTH
-    const info = [...element.info];
-
-    if(curHour === element.info[info.length-1].hour) return;
-
-    timeLabels.name.push(element.info[info.length-1].hour);
-    timeDatas.push(element.info[info.length-1].value);
-    chartTime.update();
-
-    return;
-  }
-
-  //IF ELEMENT DOES NOT EXIST
-  const item = {
-    name: givenName,
-    info: [{
+  // CHECKING IF THE CURRENT HOUR IS DIFFERENT THAT THE LAST IN THE ARRAY, OR THE DAY IS DIFFERENT
+  // CAUSE WE DONT WANT TO HAVE A VALUE FOR SAME HOUR PER DAY EVERY TIME
+  if (curHour !== data[data.length-1]?.hour || ((data[data.length-1]?.time + time24Hours) < curSecs)) {
+    const details = {
       hour: curHour,
-      value: tempValue
-    }]
+      value: Number(tempValue),
+      time: curSecs
+    }
+    data.push(details);
   }
 
-  data.push(item);
-  localStorage.setItem('data', JSON.stringify(data));
-
-  timeLabels.push(data[0].info[0].hour);
-  timeDatas.push(data[0].info[0].value);
+  // CHECKING IF ANY ELEMENT IS LONGER THAT A WEEK IN ARRAY
+  let index =0;
+  data.forEach((el, i) => {
+    if ((el.time + time7Days) < curSecs) {
+      index = i+1;
+    }
+  });
+  // REMOVE THOSE ITEMS
+  data.splice(0, index);
+  
+  localStorage.setItem(givenName, JSON.stringify(data));
+  
+  //REPAINT THE CHART
+  data.forEach(el => {
+    timeLabels.push(el.hour);
+    timeDatas.push(el.value);
+  });
+  
   chartTime.update();
+  // localStorage.removeItem(givenName);
+  // kinda pround about this one
 }
 
-// localStorage.removeItem('data');
 
 function renderChartTemp (tempValue) {
   myChartTemp.data.datasets[0].data[0] = tempValue;
@@ -156,4 +148,4 @@ function renderChartHumi (humiValue) {
   myChartHumi.update();
 }
 
-export default renderChart = {renderChartTemp, renderChartHumi, renderChartTime, getChartTime};
+export default renderChart = {renderChartTemp, renderChartHumi, renderChartTime};
