@@ -58,7 +58,7 @@ const chartTime = new Chart(ctxTime, {
     labels: timeLabels,
     datasets: [
       {
-        label: 'temperature in days',
+        label: `temperature in days, D:day of month, H:hour`,
         data: timeDatas,
         fill: false,
         cubicInterpolationMode: 'monotone',
@@ -84,8 +84,6 @@ const chartTime = new Chart(ctxTime, {
       },
       y: {
         display: true,
-        // suggestedMin: -1,
-        // suggestedMax: 1
       }
     }
   },
@@ -99,6 +97,8 @@ function renderChartTime (givenName, tempValue) {
 
   const data = JSON.parse(localStorage.getItem(givenName)) || [];
   const curHour = new Date().getHours();
+  const curDay = new Date().getDate();
+  console.log(curDay);
   const curSecs = Math.round(Date.now() / 1000) + 8*24*60*60;
   const time7Days = 7*24*60*60; //7 days in seconds
   const time24Hours = 24*60*60; //24 hours in seconds
@@ -108,13 +108,14 @@ function renderChartTime (givenName, tempValue) {
   if (curHour !== data[data.length-1]?.hour || ((data[data.length-1]?.time + time24Hours) < curSecs)) {
     const details = {
       hour: curHour,
+      day: curDay,
       value: Number(tempValue),
       time: curSecs
     }
     data.push(details);
   }
 
-  // CHECKING IF ANY ELEMENT IS LONGER THAT A WEEK IN ARRAY
+  // CHECKING IF ANY ELEMENT IS IN ARRAY LONGER THAT A WEEK IN ARRAY
   let index =0;
   data.forEach((el, i) => {
     if ((el.time + time7Days) < curSecs) {
@@ -128,7 +129,8 @@ function renderChartTime (givenName, tempValue) {
   
   //REPAINT THE CHART
   data.forEach(el => {
-    timeLabels.push(el.hour);
+    const curDate = `D:${curDay}.H:${curHour}`
+    timeLabels.push(curDate);
     timeDatas.push(el.value);
   });
   
@@ -148,4 +150,5 @@ function renderChartHumi (humiValue) {
   myChartHumi.update();
 }
 
-export default renderChart = {renderChartTemp, renderChartHumi, renderChartTime};
+const renderChart = {renderChartTemp, renderChartHumi, renderChartTime} 
+export default renderChart;
