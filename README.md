@@ -42,6 +42,7 @@ You can check out my website right there --> [stationInformation](https://statio
 - parcel
 - module exports
 - chart.js
+- localStorage
 
 ### What I've learned
 
