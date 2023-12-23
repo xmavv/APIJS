@@ -4,6 +4,7 @@ import renderChart from "./charts.js";
 
 let tempValue =30;
 let humiValue =12;
+let lastItem;
 
 const endpoint = "https://danepubliczne.imgw.pl/api/data/synop";
 // fetch(endpoint) // to fetch mi daje response
@@ -43,6 +44,10 @@ async function renderInfo() {
     const hour = document.getElementById('hour');
     const temp = document.getElementById('temp');
     const humi = document.getElementById('humi');
+
+    this.classList.add('active');
+    if(lastItem){ lastItem.classList.remove('active'); }
+    lastItem = this;
 
     const data = await getData();
     const element = data.find(e => e.id_stacji === this.children[0].id);

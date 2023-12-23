@@ -129,7 +129,7 @@ function renderChartTime (givenName, tempValue) {
   
   //REPAINT THE CHART
   data.forEach(el => {
-    const curDate = `D:${curDay}.H:${curHour}`
+    const curDate = `D:${el.day}.H:${el.hour}`
     timeLabels.push(curDate);
     timeDatas.push(el.value);
   });
