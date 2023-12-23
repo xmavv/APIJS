@@ -28,8 +28,7 @@ The task was to implement an app that would be able to:
 
 ## Presentation
 
-not yet
-![Presentation of the final app](src/img/screenshot.png)
+![Presentation of the final app](src/img/screenshoot.jpg)
 
 ### Deploy
 
