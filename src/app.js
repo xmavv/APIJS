@@ -4,10 +4,15 @@ import renderChart from "./charts.js";
 
 let tempValue =30;
 let humiValue =12;
-let lastStation;
+let speedValue =2;
+let pressureValue = 3; 
+let rainValue = 4;
+
+let element;
+let typeName = 'temperature';
 
 const infos = document.querySelectorAll('.info');
-let lastInfo;
+let lastStation;
 
 const endpoint = "https://danepubliczne.imgw.pl/api/data/synop";
 // fetch(endpoint) // to fetch mi daje response
@@ -52,35 +57,49 @@ async function renderInfo() {
     const rain = document.getElementById('rain');
 
     this.classList.add('active');
-    if(lastStation){ lastStation.classList.remove('active'); }
+    if(lastStation) lastStation.classList.remove('active');
+    if(lastStation === this) lastStation.classList.add('active');
     lastStation = this;
 
     const data = await getData();
-    const element = data.find(e => e.id_stacji === this.children[0].id);
+    element = data.find(e => e.id_stacji === this.children[0].id);
     name.innerText = element.stacja;
     id.innerText = element.id_stacji;
     date.innerText = element.data_pomiaru;
-    hour.innerText = element.godzina_pomiaru;
-    temp.innerText = element.temperatura;
-    humi.innerText = element.wilgotnosc_wzgledna;
-    speed.innerText = element.predkosc_wiatru;
-    pressure.innerText = element.cisnienie;
-    rain.innerText = element.suma_opadu;
+    hour.innerText = `${element.godzina_pomiaru}:00`;
+    temp.innerText = element.temperatura + ' [℃]';
+    humi.innerText = element.wilgotnosc_wzgledna + ' [%]';
+    speed.innerText = element.predkosc_wiatru + ' [km/h]';
+    pressure.innerText = element.cisnienie + ' [hPa]';
+    rain.innerText = element.suma_opadu + ' [mm]';
+
+    temp.parentNode.dataset.value = element.temperatura;
+    humi.parentNode.dataset.value = element.wilgotnosc_wzgledna;
+    speed.parentNode.dataset.value = element.predkosc_wiatru;
+    pressure.parentNode.dataset.value = element.cisnienie;
+    rain.parentNode.dataset.value = element.suma_opadu;
 
     tempValue = element.temperatura;
     humiValue = element.wilgotnosc_wzgledna;
+    speedValue = element.predkosc_wiatru;
+    pressureValue = element.cisnienie;
+    rainValue = element.suma_opadu;
+
+    infos.forEach(info => info.classList.remove('chart'));
+    infos[0].classList.add('chart');
+    renderChart.renderChartTime(`${element.stacja}-${typeName}`, tempValue)
 
     renderChart.renderChartTemp(tempValue);
     renderChart.renderChartHumi(humiValue);
-    renderChart.renderChartTime(element.stacja, tempValue);
 }
 
 infos.forEach(info => info.addEventListener('click', typeInfoChart));
 
 function typeInfoChart(){
+    infos.forEach(info => info.classList.remove('chart'));
     this.classList.add('chart');
-    if(lastInfo){lastInfo.classList.remove('chart');};
-    lastInfo = this;
+    typeName = this.dataset.type;
+    const value = this.dataset.value;
 
-    return this.innerText;
+    if(element) renderChart.renderChartTime(`${element.stacja}-${typeName}`, value);
 }

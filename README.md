@@ -24,7 +24,8 @@ The task was to implement an app that would be able to:
 - fetch data from api
 - show all of the stationes
 - on click each station should give us information about itself
-- furthermore shows 3 graphs, temperature, humidity, and the third graph that contains all of the informations about temperatures from past week with hours axis and temperature axis
+- each information could be clicked and picked to show on the timeline from past week
+- 3 graphs, temperature, humidity, and the third graph that contains all of the informations about your picked type of information (temperature, humidity, airpressure, windspeed, rainfall) from past week
 
 ## Presentation
 
