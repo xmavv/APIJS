@@ -32,8 +32,19 @@ body {
     margin: 1.5rem;
 }
 
+.info {
+    cursor: pointer;
+    transition: translate .3s ease;
+}
+
+.chart {
+    background-color: rgb(19, 48, 193);
+    padding: .5rem;
+    translate: 5% 0;
+}
+
 .station-list > *:hover {
-    color: steelblue;
+    color: rgb(70, 130, 180);
 }
 
 .container {

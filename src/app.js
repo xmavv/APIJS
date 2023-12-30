@@ -4,7 +4,10 @@ import renderChart from "./charts.js";
 
 let tempValue =30;
 let humiValue =12;
-let lastItem;
+let lastStation;
+
+const infos = document.querySelectorAll('.info');
+let lastInfo;
 
 const endpoint = "https://danepubliczne.imgw.pl/api/data/synop";
 // fetch(endpoint) // to fetch mi daje response
@@ -44,10 +47,13 @@ async function renderInfo() {
     const hour = document.getElementById('hour');
     const temp = document.getElementById('temp');
     const humi = document.getElementById('humi');
+    const speed = document.getElementById('speed');
+    const pressure = document.getElementById('pressure');
+    const rain = document.getElementById('rain');
 
     this.classList.add('active');
-    if(lastItem){ lastItem.classList.remove('active'); }
-    lastItem = this;
+    if(lastStation){ lastStation.classList.remove('active'); }
+    lastStation = this;
 
     const data = await getData();
     const element = data.find(e => e.id_stacji === this.children[0].id);
@@ -57,6 +63,9 @@ async function renderInfo() {
     hour.innerText = element.godzina_pomiaru;
     temp.innerText = element.temperatura;
     humi.innerText = element.wilgotnosc_wzgledna;
+    speed.innerText = element.predkosc_wiatru;
+    pressure.innerText = element.cisnienie;
+    rain.innerText = element.suma_opadu;
 
     tempValue = element.temperatura;
     humiValue = element.wilgotnosc_wzgledna;
@@ -64,4 +73,14 @@ async function renderInfo() {
     renderChart.renderChartTemp(tempValue);
     renderChart.renderChartHumi(humiValue);
     renderChart.renderChartTime(element.stacja, tempValue);
+}
+
+infos.forEach(info => info.addEventListener('click', typeInfoChart));
+
+function typeInfoChart(){
+    this.classList.add('chart');
+    if(lastInfo){lastInfo.classList.remove('chart');};
+    lastInfo = this;
+
+    return this.innerText;
 }

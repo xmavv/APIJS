@@ -4,6 +4,9 @@ const ctxTemp = document.getElementById('myChartTemp');
 const ctxHumi = document.getElementById('myChartHumi');
 const ctxTime = document.getElementById('myChartTime');
 
+const primaryColor = '#4682b4';
+const secondaryColor = 'rgb(19, 48, 193)';
+
 //TEMPERATURE
 let myChartTemp = new Chart(ctxTemp, {
   type: 'bar',
@@ -62,9 +65,11 @@ const chartTime = new Chart(ctxTime, {
         data: timeDatas,
         fill: false,
         cubicInterpolationMode: 'monotone',
-        tension: 0.4
+        tension: 0.4,
+        borderColor: secondaryColor,
+        backgroundColor: secondaryColor,
       },
-  ]},
+    ]},
   options: {
     responsive: true,
     plugins: {
@@ -98,7 +103,6 @@ function renderChartTime (givenName, tempValue) {
   const data = JSON.parse(localStorage.getItem(givenName)) || [];
   const curHour = new Date().getHours();
   const curDay = new Date().getDate();
-  console.log(curDay);
   const curSecs = Math.round(Date.now() / 1000) + 8*24*60*60;
   const time7Days = 7*24*60*60; //7 days in seconds
   const time24Hours = 24*60*60; //24 hours in seconds
