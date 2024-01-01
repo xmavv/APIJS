@@ -6,6 +6,8 @@
 
 html {
     box-sizing: border-box;
+    --colorPrimary: steelblue;
+    --colorSecondary: rgb(19, 48, 193);
 }
 
 body {
@@ -38,13 +40,13 @@ body {
 }
 
 .chart {
-    background-color: rgb(19, 48, 193);
+    background-color: var(--colorSecondary);
     padding: .5rem;
     translate: 5% 0;
 }
 
 .station-list > *:hover {
-    color: rgb(70, 130, 180);
+    color: var(--colorPrimary);
 }
 
 .container {
@@ -57,16 +59,16 @@ body {
 }
 
 .container h1 span{
-    color: steelblue;
+    color: var(--colorPrimary);
 }
 
 .container h2 span{
-    color: steelblue;
+    color: var(--colorPrimary);
 }
 
 .container span {
     font-weight: bold;
-    color: steelblue;
+    color: var(--colorPrimary);
 }
 
 .chart-conatiner {
@@ -78,7 +80,7 @@ body {
 }
 
 .active {
-    color: steelblue;
+    color: var(--colorPrimary);
 }
 
 @media only screen and (max-width: 62.5em) {
