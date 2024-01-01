@@ -30,7 +30,7 @@ The task was to implement an app that would be able to:
 
 ## Presentation
 
-![Presentation of the final app](./src/img/screenshoot2.png)
+https://github.com/xmavv/Collage-api-with-charts/assets/129995423/239a4c95-90fe-4446-b1fb-465911f89d1d
 
 ### Deploy
 
