@@ -1,0 +1,106 @@
+*,
+*::after,
+*::before {
+    margin: 0;padding: 0;box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    --colorPrimary: steelblue;
+    --colorSecondary: rgb(19, 48, 193);
+}
+
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    font-size: 100%;
+}
+
+.station-list {
+    list-style: none;
+    display: inline-block;
+}
+
+.station-list > * {
+    font-size: 1.3rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.info-container > *{
+    margin: 1.5rem;
+}
+
+.info {
+    cursor: pointer;
+    transition: translate .3s ease;
+}
+
+.chart {
+    background-color: var(--colorSecondary);
+    padding: .5rem;
+    translate: 5% 0;
+}
+
+.station-list > *:hover {
+    color: var(--colorPrimary);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 20rem 2rem;
+    width: 33rem;
+    position: fixed;
+    top: 0;
+    left: 25%;
+}
+
+.container h1 span{
+    color: var(--colorPrimary);
+}
+
+.container h2 span{
+    color: var(--colorPrimary);
+}
+
+.container span {
+    font-weight: bold;
+    color: var(--colorPrimary);
+}
+
+.chart-conatiner {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    width: 70rem;
+    height: 15rem;
+}
+
+.active {
+    color: var(--colorPrimary);
+}
+
+@media only screen and (max-width: 62.5em) {
+    body {
+        display: block;
+        font-size: 62.5%;
+    }
+
+    .station-list > * {
+        font-size: 1rem;
+    }
+
+    .container {
+        display: block;
+        position: relative;
+        left: 0;
+    }
+
+    .chart-conatiner {
+        width: 30rem;
+        height: 10rem;
+    }
+}
