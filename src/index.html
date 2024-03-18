@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>stationInformation</title>
-    <meta name="description" content="Informacyjna strona do badania różnych czynników atmosferycznych w konkretnych miastach">
-    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <meta
+      name="description"
+      content="Informacyjna strona do badania różnych czynników atmosferycznych w konkretnych miastach"
+    />
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <ul class="station-list"></ul>
-    
+
     <div class="container">
-        <div class="info-container">
-            <h1>Name: <span id="name">- - - - -</span></h1>
-            <h2>ID: <span id="id">- - - - -</span></h2>
-            <p>Date: <span id="date">- - - - -</span></p>
-            <p>Last update: <span id="hour">- - - - -</span></p>
-            <p class="info" data-type="temperature">Temperature: <span id="temp">- - - - -</span></p>
-            <p class="info" data-type="humidity">Humidity: <span id="humi">- - - - -</span></p>
-            <p class="info" data-type="windspeed">Wind speed: <span id="speed">- - - - -</span></p>
-            <p class="info" data-type="airpressure">Pressure: <span id="pressure">- - - - -</span></p>
-            <p class="info" data-type="rainfall">Rainfall: <span id="rain">- - - - -</span></p>
-        </div>
-        
-        <div class="chart-conatiner">
-            <canvas id="myChartTemp"></canvas>
-            <canvas id="myChartHumi"></canvas>
-            <canvas id="myChartTime"></canvas>
-        </div>
+      <div class="info-container">
+        <h1>Name: <span id="name">- - - - -</span></h1>
+        <h2>ID: <span id="id">- - - - -</span></h2>
+        <p>Date: <span id="date">- - - - -</span></p>
+        <p>Last update: <span id="hour">- - - - -</span></p>
+        <p class="info" data-type="temperature">
+          Temperature: <span id="temp">- - - - -</span>
+        </p>
+        <p class="info" data-type="humidity">
+          Humidity: <span id="humi">- - - - -</span>
+        </p>
+        <p class="info" data-type="windspeed">
+          Wind speed: <span id="speed">- - - - -</span>
+        </p>
+        <p class="info" data-type="airpressure">
+          Pressure: <span id="pressure">- - - - -</span>
+        </p>
+        <p class="info" data-type="rainfall">
+          Rainfall: <span id="rain">- - - - -</span>
+        </p>
+      </div>
+
+      <div class="chart-conatiner">
+        <canvas id="myChartTemp"></canvas>
+        <canvas id="myChartHumi"></canvas>
+        <canvas id="myChartTime"></canvas>
+      </div>
     </div>
-    <script type="module" src="app.js"></script>
-</body>
+    <script type="module" src="app.ts"></script>
+  </body>
 </html>
