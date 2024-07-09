@@ -1,10 +1,12 @@
 # [stationInformation](https://stationinformation.netlify.app/)
 
-## Table of content
+![Presentation of the final app](./src/img/screenshoot2.png)
+
+## Table of contents
 
 - [Overwiev](#overview)
   - [The task](#the-task)
-- [Presentation](#presentation) -[Deploy](#deploy)
+- [Deploy](#deploy)
 - [Process](#process)
   - [Build with](#build-with)
   - [What I've learned](#what-ive-learned)
@@ -25,10 +27,6 @@ The task was to implement an app that would be able to:
 - on click each station should give us information about itself
 - each information could be clicked and picked to show on the timeline from past week
 - 3 graphs, temperature, humidity, and the third graph that contains all of the informations about your picked type of information (temperature, humidity, airpressure, windspeed, rainfall) from past week
-
-## Presentation
-
-![Presentation of the final app](./src/img/screenshoot2.png)
 
 ### Deploy
 
