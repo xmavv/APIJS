@@ -36,7 +36,7 @@ You can check out my website right there --> [stationInformation](https://statio
 
 ### Build with
 
-- typeScript
+- typeScript (my first look into it ;))
 - parcel
 - module exports
 - chart.js
